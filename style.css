@@ -1,0 +1,160 @@
+:root{
+  --gap: 8px;
+  --board-max-width: 520px;
+  --ui-padding: 16px;
+  --font-base: 16px;
+  --cell-font: clamp(28px, 5.5vw, 48px); /* scales with viewport */
+  --btn-padding: clamp(8px, 1.5vw, 12px);
+  --small-font: clamp(12px, 2.2vw, 14px);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background:#771313;
+  color:#111;
+  font-size:var(--font-base);
+  padding: calc(var(--ui-padding) * 0.75);
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+/* container */
+.wrap{
+  width:100%;
+  max-width:var(--board-max-width);
+  margin: 12px auto;
+  background: #e6b28b;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+}
+
+/* header + controls */
+.controls{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.btn{
+  padding: var(--btn-padding);
+  border-radius:8px;
+  border:1px solid #151212;
+  background:transparent;
+  cursor:pointer;
+  font-size:var(--small-font);
+}
+.btn.primary{
+  background:#811212;
+  color:rgb(0, 0, 0);
+  border-color:transparent;
+}
+.muted{
+    color:#975a5a; 
+    font-size:var(--small-font);}
+
+/* info */
+.info{
+     display:flex; 
+     gap:12px; 
+     align-items:center; 
+     justify-content:space-between; 
+     flex-wrap:wrap; 
+}
+
+.small{ 
+    font-size:var(--small-font); 
+    color:#6a0909; 
+}
+
+.result{ 
+    font-weight:600; 
+    margin-top:6px; 
+}
+
+/* board: responsive grid */
+.board{
+  margin-top:12px;
+  width:100%;
+  max-width:100%;
+  display:grid;
+  gap:var(--gap);
+  /* ensure the board takes full width but each cell remains square */
+  grid-template-columns: repeat(3, 1fr);
+  /* center the board */
+  justify-items:center;
+}
+
+/* each cell keeps 1:1 ratio and fills its grid slot */
+.cell{
+  width:100%;
+  aspect-ratio: 1 / 1;           /* keep square */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: var(--cell-font);
+  background: #be86be;
+  border: 1px solid #a13bc9;
+  border-radius: 8px;
+  user-select:none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;    /* improves tap responsiveness */
+  cursor: pointer;
+}
+
+/* make inner clickable area slightly larger on small screens */
+@media (max-width:420px){
+  .cell{ border-radius:10px; }
+  .wrap{ padding:10px; }
+  :root{ --gap:6px; }
+}
+
+/* Larger layouts */
+@media (min-width:600px){
+  :root{
+    --ui-padding: 20px;
+    --gap:10px;
+    --board-max-width: 640px;
+  }
+  .controls{ gap:12px; }
+}
+
+/* Desktop: increase size and add hover affordance */
+@media (min-width:900px){
+  :root{
+    --cell-font: clamp(32px, 2.6vw, 56px);
+    --gap:12px;
+    --board-max-width: 760px;
+  }
+  .cell{
+    transition: transform 120ms ease, box-shadow 120ms ease;
+  }
+  /* subtle hover on pointer devices only */
+  @media (hover:hover) and (pointer:fine){
+    .cell:hover{ transform: translateY(-4px); box-shadow: 0 6px 14px rgba(16,24,40,0.06); }
+  }
+}
+
+/* Make sure selects and buttons are touch-friendly and aligned */
+.controls select{ 
+    color:#6d2929; 
+    font-size:var(--small-font);
+    padding:6px 8px; 
+    border-radius:8px; 
+    border:1px solid #6d2929; 
+}
+
+.controls label{ 
+    display:flex; 
+    gap:8px; 
+    align-items:center; 
+}
+
+footer{ margin-top:14px; text-align:center; padding:8px 0; color:#666; font-size:var(--small-font); }

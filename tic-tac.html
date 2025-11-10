@@ -1,0 +1,43 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tic Tac Toe — Play Online</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap" id="app">
+    <h1>Tic Tac Toe — Local Play</h1>
+    <div class="controls" id="controls">
+      <button id="newBtn" class="btn primary">New Game</button>
+      <label class="muted">Starting player:
+        <select id="startSelect" class="btn" style="padding:6px 8px">
+          <option value="X">X</option>
+          <option value="O">O</option>
+        </select>
+      </label>
+      <label class="muted">Mode:
+        <select id="modeSelect" class="btn" style="padding:6px 8px">
+          <option value="local">Two players</option> 
+        </select>
+      </label>
+      <div style="margin-left:auto" class="muted">Tip: click a square or tap on mobile</div>
+    </div>
+
+    <div class="info">
+      <div class="small">Turn: <span id="turn">—</span></div>
+      <div class="result" id="result">Good luck!</div>
+    </div>
+
+    <div class="board" id="board" aria-label="tic tac toe board"></div>
+
+    <footer>
+      <div class="small">@Copyrights Made by Sangeetha</div>
+    </footer>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
